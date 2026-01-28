@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="cont">
+      <h1>To do List</h1>
+      <div class="row">
+        <input type="text" placeholder="Write here..." class="inputDo" />
+        <button class="btnClick">Add</button>
+        <button class="delete">Clear</button>
+      </div>
+      <div class="container"></div>
+    </div>
+    <script>
+      const btnAdd = document.querySelector(".btnClick");
+      const inputDo = document.querySelector(".inputDo");
+      const deleteBtn = document.querySelector(".delete");
+      console.log(document.querySelector(".container"));
+      btnAdd.addEventListener("click", function () {
+        if (inputDo.value.trim() === "") {
+          alert("Please write something!");
+          return;
+        }
+        const taskDo = document.createElement("div");
+
+        taskDo.innerHTML = `<div class="row">
+          <div class="card">
+            <h2 class="taskToDo"></h2>
+          </div>
+          <button class="btnDone">Done</button>
+        </div>`;
+
+        const nameTask = taskDo.querySelector(".taskToDo");
+        nameTask.textContent = inputDo.value;
+
+        const btnDone = taskDo.querySelector(".btnDone");
+        btnDone.addEventListener("click", function () {
+          const card = taskDo.querySelector(".card");
+          card.style.textDecoration = "line-through";
+          card.style.backgroundColor = "#6b7280";
+          card.style.color = "#b9bcc0";
+        });
+
+        document.querySelector(".container").appendChild(taskDo);
+
+        inputDo.value = "";
+      });
+
+      deleteBtn.addEventListener("click", function () {
+        document.querySelector(".container").innerHTML = "";
+      });
+    </script>
+  </body>
+</html>
